@@ -10,6 +10,7 @@ describe User do
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:password_digest) }
 
   it { should be_valid }
 
@@ -47,7 +48,7 @@ describe "when email format is valid" do
         expect(@user).to be_valid
       end
    end 
-    
+
    describe "when email address is already taken" do
     before do
       user_with_same_email = @user.dup
