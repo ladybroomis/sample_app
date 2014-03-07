@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "User pages" do
 
-  subject { page }
+  subject { page } 
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
@@ -37,4 +37,4 @@ describe "User pages" do
       end
     end
   end
-end
+end 
