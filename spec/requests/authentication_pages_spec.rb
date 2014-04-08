@@ -9,6 +9,12 @@ describe "Authentication" do
 
     it { should have_content('Sign in') }
     it { should have_title('Sign in') }
+
+    it { should_not have_link('Users') }
+    it { should_not have_link('Profile') }
+    it { should_not have_link('Settings') }
+    it { should_not have_link('Sign out', href: signout_path) }
+    it { should have_link('Sign in', href: signin_path) }
   end 
 
   describe "signin" do
@@ -51,6 +57,15 @@ describe "Authentication" do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
 
+      describe "when visiting a non-protected page" do
+        before {visit user_path(user)}
+        it {should have_link('Sign in', href: signin_path)}
+        it {should_not have_link('Users')}
+        it {should_not have_link('Profile')}
+        it {should_not have_link('Settings')}
+        it {should_not have_link('Sign out')}
+      end
+      
       describe "in the Users controller" do
             
         describe "visiting the user index" do
